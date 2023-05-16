@@ -7,8 +7,8 @@ screen_width = screen_info.current_w
 screen_height = screen_info.current_h
 
 # -------------   Game dimensions ------------- #
-GAME_HEIGHT = int(screen_height * 0.7)
-GAME_WIDTH = GAME_HEIGHT * 1.85
+GAME_HEIGHT = int(screen_height*0.9 )
+GAME_WIDTH = GAME_HEIGHT * 2
 
 print(GAME_WIDTH)
 print(GAME_HEIGHT)
@@ -34,3 +34,4 @@ RIGHT_GOAL_POSITION = (1251, 256)
 
 LEFT_EDGE_POSITION = (100, 257)
 RIGHT_EDGE_POSITION = (1251, 256)
+
