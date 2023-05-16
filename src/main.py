@@ -18,9 +18,15 @@ WIN = pygame.display.set_mode((configurations.GAME_WIDTH, configurations.GAME_HE
 pygame.display.set_caption(configurations.GAME_TITLE)
 
 
+
 def main():
 
     ball = pygame.Rect(configurations.BALL_POSITION, configurations.BALL_SCALE)
+    slider_pos = configurations.slider_position[0]
+
+    pygame.init()
+    WIN = pygame.display.set_mode((configurations.GAME_WIDTH, configurations.GAME_HEIGHT))
+    pygame.display.set_caption(configurations.GAME_TITLE)
 
     run = True
     clock = pygame.time.Clock()
@@ -32,7 +38,8 @@ def main():
 
         keys_pressed = pygame.key.get_pressed()
         graphics.ball_movement_handler(keys_pressed, ball)
-        graphics.draw_screen(WIN, ball)
+        slider_pos = graphics.slider_drag_handler(event, slider_pos)
+        graphics.draw_screen(WIN, ball, slider_pos)
 
     pygame.quit()
 

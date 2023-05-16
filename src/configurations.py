@@ -1,5 +1,6 @@
 import pygame
 pygame.init()
+import colors
 
 # Get the size of the screen
 screen_info = pygame.display.Info()
@@ -34,4 +35,18 @@ RIGHT_GOAL_POSITION = (1251, 256)
 
 LEFT_EDGE_POSITION = (100, 257)
 RIGHT_EDGE_POSITION = (1251, 256)
+
+
+
+
+# Slider parameters
+slider_width = 200
+slider_height = 10
+slider_color = colors.WHITE
+handle_radius = 10
+handle_color = colors.RED
+
+# Position of the slider 
+slider_position =  (GAME_WIDTH // 10 - slider_width // 2, GAME_HEIGHT - 30)
+
 

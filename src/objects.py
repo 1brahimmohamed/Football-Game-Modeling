@@ -18,3 +18,6 @@ RIGHT_EDGE = pygame.image.load(os.path.join(assets_dir, "right_edge.png"))
 
 BALL = pygame.image.load(os.path.join(assets_dir, "ball.png"))
 BALL = pygame.transform.scale(BALL, configurations.BALL_SCALE)
+
+
+
