@@ -49,6 +49,7 @@ def main():
                 if event.key == pygame.K_SPACE:
                     start_time, start_x_velocity, start_y_velocity = physics.launch(configurations.BALL_ANGLE,
                                                                                     configurations.BALL_INITIAL_VELOCITY)
+                    physics.getMaxHeight(configurations.BALL_ANGLE, configurations.BALL_INITIAL_VELOCITY)
                     flag = True
 
         if flag:

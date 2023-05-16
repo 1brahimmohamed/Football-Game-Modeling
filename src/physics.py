@@ -3,6 +3,10 @@ import pygame as pg
 import configurations
 
 gravity = 9.8
+# assuming resolution is 96 PPI (pixels per inch), convert to PPC (pixels per centimeter)
+ppc = 25.4 / 96
+ppm = ppc * 100  # convert PPC to PPM (pixels per meter)
+
 ball_path_list = []
 
 
@@ -11,8 +15,22 @@ def timeOfFlight(theta, intial_velocity):
 
 
 def getMaxHeight(theta, intial_velocity):
-    h = ((intial_velocity ** 2) * (math.sin(theta)) ** 2) / (2 * gravity)
+    h = ((intial_velocity ** 2) *
+         (math.sin(math.radians(theta))) ** 2) / (2 * gravity)
+    configurations.maxHeight = round(h, 2)
     return round(h, 2)
+
+
+def convertPixeltoMeter(pixels):
+    return pixels / ppm
+
+
+def calculateGoalHeight(vx, vy):
+    distanceMeter = convertPixeltoMeter(configurations.RIGHT_GOAL_POSITION[0] -
+                                        configurations.BALL_POSITION[0])
+    t = distanceMeter/vx
+    height_at_goal = vy*t - 0.5 * gravity * t ** 2
+    configurations.ballHeightatGoal = round(height_at_goal, 2)
 
 
 def launch(theta, intial_velocity):
@@ -29,8 +47,10 @@ def update(ball, start_time, start_x_velocity, start_y_velocity, max_h):
     change_x = start_x_velocity * time_passed
 
     # Physics formula: final_pos = vi * time_passed + 1/2 * -GRAVITY * time_passed ** 2
-    change_y = (start_y_velocity * time_passed) - (0.5 * configurations.GRAVITY * pow(time_passed, 2))
-    ball.x = configurations.BALL_POSITION[0] + change_x * configurations.BALL_UPDATE_VELOCITY
+    change_y = (start_y_velocity * time_passed) - \
+        (0.5 * configurations.GRAVITY * pow(time_passed, 2))
+    ball.x = configurations.BALL_POSITION[0] + \
+        change_x * configurations.BALL_UPDATE_VELOCITY
 
     if time_passed == 0:
         return True
@@ -40,12 +60,13 @@ def update(ball, start_time, start_x_velocity, start_y_velocity, max_h):
                 ball.y > configurations.GAME_HEIGHT - 460 and\
                 ball.x >= configurations.RIGHT_EDGE_POSITION[0] + 80:
             ball.y = configurations.BALL_POSITION[1]
+            calculateGoalHeight(start_x_velocity, start_y_velocity)
             return False
 
         else:
-            ball.y = configurations.BALL_POSITION[1] - change_y * configurations.BALL_UPDATE_VELOCITY
+            ball.y = configurations.BALL_POSITION[1] - \
+                change_y * configurations.BALL_UPDATE_VELOCITY
     else:
         return False
 
     return True
-
