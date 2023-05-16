@@ -46,6 +46,10 @@ BALL_INITIAL_VELOCITY = 115
 # -------------   Game Fonts ------------- #
 fontsize = 20
 font = pygame.font.SysFont("poppinssemibold", fontsize)
+ 
+# -------------   Ball Height at Goal ------------- #
+ballHeightatGoal = 0
+maxHeight = 0
 
 # ------------- Slider Constants ------------- #
 slider_width = 200
