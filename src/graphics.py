@@ -17,6 +17,14 @@ def draw_screen(WIN, ball, slider_pos):
     slider_bar = pygame.Rect(configurations.slider_position, (configurations.slider_width, configurations.slider_height))
     pygame.draw.rect(WIN, configurations.slider_color, slider_bar)
 
+    # Add slider value to the screen
+    slider_value = configurations.font.render(str(int(calc_slider_value(slider_pos)*100)), True, colors.WHITE)
+    WIN.blit(slider_value, (configurations.slider_value_position))
+
+    # Add Slider label to the screen under the slider in center
+    slider_label = configurations.font.render(configurations.slider_label, True, configurations.slider_label_color)
+    WIN.blit(slider_label, (configurations.slider_label_position))
+
     # Draw the handle
     handle_center = (slider_pos,configurations. slider_position[1] + configurations.slider_height // 2)
     pygame.draw.circle(WIN,configurations. handle_color, handle_center,configurations. handle_radius)
