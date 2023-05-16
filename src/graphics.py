@@ -72,7 +72,7 @@ def draw_screen(WIN, ball, angle, current_mouse_position, handle_position_angle,
 
     # Add slider value to the screen
     slider_value = configurations.font.render(str(
-        int(calc_slider_value_distance(handle_position_distance))), True, colors.WHITE)
+        50 - int(calc_slider_value_distance(handle_position_distance))), True, colors.WHITE)
     WIN.blit(slider_value, (configurations.slider_value_position_distance))
 
     # Add Slider label to the screen under the slider in center
@@ -114,6 +114,7 @@ def draw_screen(WIN, ball, angle, current_mouse_position, handle_position_angle,
 
 def ball_movement_handler(ball, sliderVal):
     ball.x = sliderVal
+    configurations.BALL_POSITION = (sliderVal, configurations.BALL_POSITION[1])
 
 
 def slider_drag_handler(event, handle_position_angle, is_dragging, slider_position):
@@ -152,7 +153,7 @@ def calc_slider_value_distance(handle_position_distance):
     slider_value = (handle_position_distance -
                     configurations.slider_position_distance[0]) / configurations.slider_width
     proportion = (slider_value - 0) / (1 - 0)
-    return (proportion * (1200 - 60)) + 60
+    return (proportion * (45 - 5)) + 5
 
 
 def calc_slider_value_velocity(handle_position_velocity):

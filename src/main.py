@@ -48,12 +48,14 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     start_time, start_x_velocity, start_y_velocity = physics.launch(configurations.BALL_ANGLE,
-                                                                                    configurations.BALL_INITIAL_VELOCITY)
+                                                                                    configurations.BALL_INITIAL_VELOCITY * configurations.BALL_INITIAL_VELOCITY_FACTOR)
                     physics.getMaxHeight(configurations.BALL_ANGLE, configurations.BALL_INITIAL_VELOCITY)
                     flag = True
 
         if flag:
             flag = physics.update(ball, start_time, start_x_velocity, start_y_velocity, max_h)
+            physics.calculateGoalHeight(configurations.BALL_INITIAL_VELOCITY, configurations.BALL_ANGLE ,configurations.BALL_DISTANCE)
+
 
         current_mouse_position = pygame.mouse.get_pos()
 
@@ -65,11 +67,11 @@ def main():
         
         configurations.BALL_ANGLE = graphics.calc_slider_value_angle(handle_position_angle)
         configurations.BALL_INITIAL_VELOCITY = graphics.calc_slider_value_velocity(handle_position_velocity)
-        configurations.BALL_POSITION = (graphics.calc_slider_value_distance(handle_position_distance), configurations.BALL_POSITION[1])
-        
-        
+        sliderDist = graphics.calc_slider_value_distance(handle_position_distance)
+        configurations.BALL_DISTANCE = 50 - sliderDist
+
         if is_dragging_distance or is_dragging_angle or is_dragging_velocity:
-            graphics.ball_movement_handler(ball, graphics.calc_slider_value_distance(handle_position_distance))
+            graphics.ball_movement_handler(ball, sliderDist * physics.ppm)
             graphics.draw_screen(WIN, ball,configurations.BALL_ANGLE, current_mouse_position, handle_position_angle, handle_position_distance, handle_position_velocity)
 
     pygame.quit()

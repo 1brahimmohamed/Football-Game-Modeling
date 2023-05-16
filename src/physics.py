@@ -15,8 +15,10 @@ def timeOfFlight(theta, intial_velocity):
 
 
 def getMaxHeight(theta, intial_velocity):
-    h = ((intial_velocity ** 2) *
-         (math.sin(math.radians(theta))) ** 2) / (2 * gravity)
+    
+    T = intial_velocity * math.sin(math.radians(theta)) / gravity
+    h = intial_velocity * math.sin(math.radians(theta)) * T - 0.5 * gravity * T ** 2
+
     configurations.maxHeight = round(h, 2)
     return round(h, 2)
 
@@ -25,12 +27,13 @@ def convertPixeltoMeter(pixels):
     return pixels / ppm
 
 
-def calculateGoalHeight(vx, vy):
-    distanceMeter = convertPixeltoMeter(configurations.RIGHT_GOAL_POSITION[0] -
-                                        configurations.BALL_POSITION[0])
-    t = distanceMeter/vx
-    height_at_goal = vy*t - 0.5 * gravity * t ** 2
-    configurations.ballHeightatGoal = round(height_at_goal, 2)
+def calculateGoalHeight(init_vel, theta ,distance):
+    vel_x = init_vel * math.cos(math.radians(theta))
+    vel_y = abs(init_vel * math.sin(math.radians(theta)))
+    
+    t = distance/vel_x
+    height_at_goal = vel_y*t - 0.5 * gravity * t ** 2
+    configurations.ballHeightatGoal =  round((configurations.maxHeight - height_at_goal), 2)
 
 
 def launch(theta, intial_velocity):
@@ -55,12 +58,12 @@ def update(ball, start_time, start_x_velocity, start_y_velocity, max_h):
     if time_passed == 0:
         return True
 
+
     if configurations.BALL_POSITION[1] - change_y * configurations.BALL_UPDATE_VELOCITY < configurations.GAME_HEIGHT - 240:
         if ball.y < configurations.GAME_HEIGHT - 240 and \
                 ball.y > configurations.GAME_HEIGHT - 460 and\
                 ball.x >= configurations.RIGHT_EDGE_POSITION[0] + 80:
             ball.y = configurations.BALL_POSITION[1]
-            calculateGoalHeight(start_x_velocity, start_y_velocity)
             return False
 
         else:

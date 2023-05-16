@@ -42,7 +42,8 @@ BALL_UPDATE_VELOCITY = 1
 
 BALL_ANGLE = 45
 BALL_INITIAL_VELOCITY = 115
-
+BALL_INITIAL_VELOCITY_FACTOR = 5
+BALL_DISTANCE = 50
 # -------------   Game Fonts ------------- #
 fontsize = 20
 font = pygame.font.SysFont("poppinssemibold", fontsize)
