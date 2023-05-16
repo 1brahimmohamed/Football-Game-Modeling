@@ -9,24 +9,23 @@ screen_width = screen_info.current_w
 screen_height = screen_info.current_h
 
 # -------------   Game dimensions ------------- #
-GAME_HEIGHT = int(screen_height*0.7)
+GAME_HEIGHT = int(screen_height * 0.7)
 GAME_WIDTH = GAME_HEIGHT * 1.85
 
 # -------------  Game FPS ------------- #
 GAME_FPS = 60
 
-# -------------   Game Ball Velocity ------------- #
-BALL_VELOCITY = 10
-
 # -------------   Game title ------------- #
 GAME_TITLE = "Football Modeling Game"
 
-# -------------   Game Positions & Scales ------------- #
+# -------------   Ball Settings ------------- #
+BALL_VELOCITY = 10
 ball_scale = 40
 # BALL_POSITION = (GAME_WIDTH / 2 - 10, GAME_HEIGHT / 2 - 10)
 BALL_POSITION = (125, GAME_HEIGHT - 240)
 BALL_SCALE = (ball_scale, ball_scale)
 
+# -------------   Staduim Settings ------------- #
 STADIUM_POSITION = (0, 0)
 
 LEFT_GOAL_POSITION = (0, 233)
@@ -47,9 +46,9 @@ BALL_DISTANCE = 50
 # -------------   Game Fonts ------------- #
 fontsize = 20
 font = pygame.font.SysFont("poppinssemibold", fontsize)
- 
+
 # -------------   Ball Height at Goal ------------- #
-ballHeightatGoal = 0
+ballHeightAtGoal = 0
 maxHeight = 0
 
 # ------------- Slider Constants ------------- #
@@ -63,17 +62,23 @@ slider_label_color = colors.WHITE
 slider_value_color = colors.WHITE
 
 # ------------- Slider Positions ------------- #
-slider_position_angle =  (GAME_WIDTH // 10 - slider_width // 2 - 10, GAME_HEIGHT - 80)
-slider_label_position_angle = (slider_position_angle[0] + slider_width // 2 - fontsize*1.5 - 10, slider_position_angle[1] + slider_height)
+slider_position_angle = (GAME_WIDTH // 10 - slider_width // 2 - 10, GAME_HEIGHT - 80)
+slider_label_position_angle = (
+    slider_position_angle[0] + slider_width // 2 - fontsize * 1.5 - 10, slider_position_angle[1] + slider_height)
 slider_value_position_angle = (slider_position_angle[0] + slider_width + 10, slider_position_angle[1] - fontsize // 2)
 
 slider_position_distance = (GAME_WIDTH // 10 * 3 - 20, GAME_HEIGHT - 80)
-slider_label_position_distance = (slider_position_distance[0] + slider_width // 2 - fontsize*1.5 - 20, slider_position_distance[1] + slider_height)
-slider_value_position_distance = (slider_position_distance[0] + slider_width + 10, slider_position_distance[1] - fontsize // 2)
+slider_label_position_distance = (
+    slider_position_distance[0] + slider_width // 2 - fontsize * 1.5 - 20, slider_position_distance[1] + slider_height)
+slider_value_position_distance = (
+    slider_position_distance[0] + slider_width + 10, slider_position_distance[1] - fontsize // 2)
 
 slider_position_velocity = (GAME_WIDTH // 10 * 6 - 60, GAME_HEIGHT - 80)
-slider_label_position_velocity = (slider_position_velocity[0] + slider_width // 2 - 20  - fontsize*1.5 - 30, slider_position_velocity[1] + slider_height)
-slider_value_position_velocity = (slider_position_velocity[0] + slider_width + 15, slider_position_velocity[1] - fontsize // 2)
+slider_label_position_velocity = (
+    slider_position_velocity[0] + slider_width // 2 - 20 - fontsize * 1.5 - 30,
+    slider_position_velocity[1] + slider_height)
+slider_value_position_velocity = (
+    slider_position_velocity[0] + slider_width + 15, slider_position_velocity[1] - fontsize // 2)
 
 # -------------   Slider Labels ------------- #
 slider_label_angle = "Angle"
