@@ -37,7 +37,7 @@ def update(ball, start_time, start_x_velocity, start_y_velocity, max_h):
 
     if configurations.BALL_POSITION[1] - change_y * configurations.BALL_UPDATE_VELOCITY < configurations.GAME_HEIGHT - 240:
         if ball.y < configurations.GAME_HEIGHT - 240 and \
-                ball.y > configurations.GAME_HEIGHT - 440 and\
+                ball.y > configurations.GAME_HEIGHT - 460 and\
                 ball.x >= configurations.RIGHT_EDGE_POSITION[0] + 80:
             ball.y = configurations.BALL_POSITION[1]
             return False
@@ -48,3 +48,4 @@ def update(ball, start_time, start_x_velocity, start_y_velocity, max_h):
         return False
 
     return True
+

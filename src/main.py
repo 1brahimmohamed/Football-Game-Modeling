@@ -55,17 +55,21 @@ def main():
             flag = physics.update(ball, start_time, start_x_velocity, start_y_velocity, max_h)
 
         current_mouse_position = pygame.mouse.get_pos()
-        configurations.BALL_INITIAL_VELOCITY = graphics.calc_slider_value_angle(handle_position_angle)
 
         handle_position_angle, is_dragging_angle = graphics.slider_drag_handler(event, handle_position_angle, is_dragging_angle, configurations.slider_position_angle)
         handle_position_distance, is_dragging_distance = graphics.slider_drag_handler(event, handle_position_distance, is_dragging_distance, configurations.slider_position_distance)
         handle_position_velocity, is_dragging_velocity = graphics.slider_drag_handler(event, handle_position_velocity, is_dragging_velocity, configurations.slider_position_velocity)
         
-        graphics.draw_screen(WIN, ball, current_mouse_position, handle_position_angle, handle_position_distance, handle_position_velocity)
-        print("Angle Value: ", graphics.calc_slider_value_angle(handle_position_angle))
-        print("Distance Value: ", graphics.calc_slider_value_distance(handle_position_distance))
-        print("Velocity Value: ", graphics.calc_slider_value_velocity(handle_position_velocity))
-
+        graphics.draw_screen(WIN, ball, configurations.BALL_ANGLE ,current_mouse_position, handle_position_angle, handle_position_distance, handle_position_velocity)
+        
+        configurations.BALL_ANGLE = graphics.calc_slider_value_angle(handle_position_angle)
+        configurations.BALL_INITIAL_VELOCITY = graphics.calc_slider_value_velocity(handle_position_velocity)
+        configurations.BALL_POSITION = (graphics.calc_slider_value_distance(handle_position_distance), configurations.BALL_POSITION[1])
+        
+        
+        if is_dragging_distance or is_dragging_angle or is_dragging_velocity:
+            graphics.ball_movement_handler(ball, graphics.calc_slider_value_distance(handle_position_distance))
+            graphics.draw_screen(WIN, ball,configurations.BALL_ANGLE, current_mouse_position, handle_position_angle, handle_position_distance, handle_position_velocity)
 
     pygame.quit()
 
