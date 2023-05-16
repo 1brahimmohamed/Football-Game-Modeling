@@ -50,7 +50,7 @@ BALL_INITIAL_VELOCITY = 115
 fontsize = 20
 font = pygame.font.SysFont("poppinssemibold", fontsize)
 
-# ------------- Slider parameters ------------- #
+# ------------- Slider Constants ------------- #
 slider_width = 200
 slider_height = 12
 handle_radius = 12
