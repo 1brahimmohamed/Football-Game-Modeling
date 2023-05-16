@@ -33,15 +33,30 @@ def ball_movement_handler(keys_pressed, ball):
     if keys_pressed[pygame.K_DOWN] and ball.y + configurations.BALL_VELOCITY < configurations.GAME_HEIGHT - 240:
         ball.y += configurations.BALL_VELOCITY
 
-def slider_drag_handler(event, slider_pos):
+def slider_drag_handler(event, slider_pos, is_dragging):
     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
         mouse_x, mouse_y = pygame.mouse.get_pos()
-        if mouse_x >= configurations.slider_position[0] and mouse_x <= configurations.slider_position[0] + configurations.slider_width:
-            if mouse_y >= configurations.slider_position[1] and mouse_y <= configurations.slider_position[1] + configurations.slider_height:
-                # update the slider position
-                slider_pos = mouse_x
-    print("Slider Position: ", calc_slider_value(slider_pos))
-    return slider_pos
+        if (
+            mouse_x >= configurations.slider_position[0]
+            and mouse_x <= configurations.slider_position[0] + configurations.slider_width
+            and mouse_y >= configurations.slider_position[1]
+            and mouse_y <= configurations.slider_position[1] + configurations.slider_height
+        ):
+            # Start dragging the slider
+            is_dragging = True
+    elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+        # Stop dragging the slider
+        is_dragging = False
+    elif event.type == pygame.MOUSEMOTION and is_dragging:
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        # Update the slider position based on the mouse movement
+        slider_pos = max(
+            configurations.slider_position[0],
+            min(mouse_x, configurations.slider_position[0] + configurations.slider_width)
+        )
+
+    return slider_pos, is_dragging
+
 
 def calc_slider_value(slider_pos):
     slider_value = (slider_pos - configurations.slider_position[0]) / configurations.slider_width

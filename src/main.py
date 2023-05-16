@@ -29,6 +29,7 @@ def main():
     pygame.display.set_caption(configurations.GAME_TITLE)
 
     run = True
+    is_dragging = False
     clock = pygame.time.Clock()
     while run:
         clock.tick(configurations.GAME_FPS)
@@ -38,8 +39,9 @@ def main():
 
         keys_pressed = pygame.key.get_pressed()
         graphics.ball_movement_handler(keys_pressed, ball)
-        slider_pos = graphics.slider_drag_handler(event, slider_pos)
+        slider_pos, is_dragging = graphics.slider_drag_handler(event, slider_pos, is_dragging)
         graphics.draw_screen(WIN, ball, slider_pos)
+        print("Slider Position: ", graphics.calc_slider_value(slider_pos))
 
     pygame.quit()
 

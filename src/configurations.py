@@ -8,8 +8,8 @@ screen_width = screen_info.current_w
 screen_height = screen_info.current_h
 
 # -------------   Game dimensions ------------- #
-GAME_HEIGHT = int(screen_height*0.9 )
-GAME_WIDTH = GAME_HEIGHT * 2
+GAME_HEIGHT = int(screen_height*0.7 )
+GAME_WIDTH = GAME_HEIGHT * 1.85
 
 print(GAME_WIDTH)
 print(GAME_HEIGHT)
@@ -37,16 +37,13 @@ LEFT_EDGE_POSITION = (100, 257)
 RIGHT_EDGE_POSITION = (1251, 256)
 
 
-
-
-# Slider parameters
+# ------------- Slider parameters ------------- #
 slider_width = 200
-slider_height = 10
+slider_height = 12
 slider_color = colors.WHITE
-handle_radius = 10
+handle_radius = 12
 handle_color = colors.RED
 
-# Position of the slider 
-slider_position =  (GAME_WIDTH // 10 - slider_width // 2, GAME_HEIGHT - 30)
+slider_position =  (GAME_WIDTH // 10 - slider_width // 2, GAME_HEIGHT - 35)
 
 
