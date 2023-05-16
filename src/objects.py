@@ -4,8 +4,8 @@ import configurations
 
 
 # Get the absolute path of the assets directory
-# assets_dir = os.path.join(os.getcwd(), "src/assets")
-assets_dir = "assets"
+assets_dir = os.path.join(os.getcwd(), "src/assets")
+# assets_dir = "assets"
 
 # Load the images
 STADIUM = pygame.image.load(os.path.join(assets_dir, "stadium.jpg"))

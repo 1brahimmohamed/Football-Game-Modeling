@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 import colors
 
@@ -6,6 +7,7 @@ import colors
 screen_info = pygame.display.Info()
 screen_width = screen_info.current_w
 screen_height = screen_info.current_h
+
 # -------------   Game dimensions ------------- #
 GAME_HEIGHT = int(screen_height )
 GAME_WIDTH = GAME_HEIGHT * 1.8
@@ -22,14 +24,10 @@ BALL_VELOCITY = 10
 # -------------   Game title ------------- #
 GAME_TITLE = "Football Modeling Game"
 
-
-# -------------   Game Fonts ------------- #
-fontsize = 30
-font = pygame.font.SysFont("comicsans", fontsize)
-
 # -------------   Game Positions & Scales ------------- #
 ball_scale = 40
-BALL_POSITION = (GAME_WIDTH / 2 - 10, GAME_HEIGHT / 2 - 10)
+# BALL_POSITION = (GAME_WIDTH / 2 - 10, GAME_HEIGHT / 2 - 10)
+BALL_POSITION = (125, GAME_HEIGHT - 240)
 BALL_SCALE = (ball_scale, ball_scale)
 
 STADIUM_POSITION = (0, 0)
@@ -40,8 +38,19 @@ RIGHT_GOAL_POSITION = (1251, 256)
 LEFT_EDGE_POSITION = (100, 257)
 RIGHT_EDGE_POSITION = (1251, 256)
 
+# -------------   Game Physics ------------- #
+GRAVITY = 9.8
+ACCELERATION_MULTIPLIER = 1.5
+BALL_UPDATE_VELOCITY = 1
 
-# ------------- Slider Constants ------------- #
+BALL_ANGLE = 45
+BALL_INITIAL_VELOCITY = 115
+
+# -------------   Game Fonts ------------- #
+fontsize = 20
+font = pygame.font.SysFont("poppinssemibold", fontsize)
+
+# ------------- Slider parameters ------------- #
 slider_width = 200
 slider_height = 12
 handle_radius = 12
@@ -68,9 +77,3 @@ slider_value_position_velocity = (slider_position_velocity[0] + slider_width + 1
 slider_label_angle = "Angle"
 slider_label_distance = "Distance"
 slider_label_velocity = "Velocity"
-
-
-
-
-
-
