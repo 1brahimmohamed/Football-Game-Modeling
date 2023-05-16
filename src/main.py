@@ -22,14 +22,20 @@ pygame.display.set_caption(configurations.GAME_TITLE)
 def main():
 
     ball = pygame.Rect(configurations.BALL_POSITION, configurations.BALL_SCALE)
-    slider_pos = configurations.slider_position[0]
+
+    # Slider handle positions 
+    handle_position_angle = configurations.slider_position_angle[0]
+    handle_position_distance = configurations.slider_position_distance[0]
+    handle_position_velocity = configurations.slider_position_velocity[0]
 
     pygame.init()
     WIN = pygame.display.set_mode((configurations.GAME_WIDTH, configurations.GAME_HEIGHT))
     pygame.display.set_caption(configurations.GAME_TITLE)
 
     run = True
-    is_dragging = False
+    is_dragging_angle = False
+    is_dragging_distance = False
+    is_dragging_velocity = False
     clock = pygame.time.Clock()
     while run:
         clock.tick(configurations.GAME_FPS)
@@ -39,9 +45,14 @@ def main():
 
         keys_pressed = pygame.key.get_pressed()
         graphics.ball_movement_handler(keys_pressed, ball)
-        slider_pos, is_dragging = graphics.slider_drag_handler(event, slider_pos, is_dragging)
-        graphics.draw_screen(WIN, ball, slider_pos)
-        print("Slider Position: ", graphics.calc_slider_value(slider_pos))
+        handle_position_angle, is_dragging_angle = graphics.slider_drag_handler(event, handle_position_angle, is_dragging_angle, configurations.slider_position_angle)
+        handle_position_distance, is_dragging_distance = graphics.slider_drag_handler(event, handle_position_distance, is_dragging_distance, configurations.slider_position_distance)
+        handle_position_velocity, is_dragging_velocity = graphics.slider_drag_handler(event, handle_position_velocity, is_dragging_velocity, configurations.slider_position_velocity)
+
+        graphics.draw_screen(WIN, ball, handle_position_angle, handle_position_distance, handle_position_velocity)
+        print("Angle Value: ", graphics.calc_slider_value(handle_position_angle))
+        print("Distance Value: ", graphics.calc_slider_value(handle_position_distance))
+        print("Velocity Value: ", graphics.calc_slider_value(handle_position_velocity))
 
     pygame.quit()
 
@@ -49,4 +60,3 @@ def main():
 if __name__ == "__main__":
     main()
     
-# angle , distance , velocity

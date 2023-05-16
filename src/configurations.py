@@ -41,18 +41,33 @@ LEFT_EDGE_POSITION = (100, 257)
 RIGHT_EDGE_POSITION = (1251, 256)
 
 
-# ------------- Slider parameters ------------- #
+# ------------- Slider Constants ------------- #
 slider_width = 200
 slider_height = 12
-slider_color = colors.WHITE
 handle_radius = 12
+
+slider_color = colors.WHITE
 handle_color = colors.DARK_BLUE
-slider_label = "Speed"
 slider_label_color = colors.DARK_BLUE
 slider_value_color = colors.WHITE
-slider_position =  (GAME_WIDTH // 10 - slider_width // 2, GAME_HEIGHT - 80)
-slider_label_position = (slider_position[0] + slider_width // 2 - fontsize*1.5, slider_position[1] + slider_height)
-slider_value_position = (slider_position[0] + slider_width + 15, slider_position[1] - fontsize // 2)
+
+# ------------- Slider Positions ------------- #
+slider_position_angle =  (GAME_WIDTH // 10 - slider_width // 2, GAME_HEIGHT - 80)
+slider_label_position_angle = (slider_position_angle[0] + slider_width // 2 - fontsize*1.5, slider_position_angle[1] + slider_height)
+slider_value_position_angle = (slider_position_angle[0] + slider_width + 15, slider_position_angle[1] - fontsize // 2)
+
+slider_position_distance = (GAME_WIDTH // 10 * 3, GAME_HEIGHT - 80)
+slider_label_position_distance = (slider_position_distance[0] + slider_width // 2 - fontsize*1.5, slider_position_distance[1] + slider_height)
+slider_value_position_distance = (slider_position_distance[0] + slider_width + 15, slider_position_distance[1] - fontsize // 2)
+
+slider_position_velocity = (GAME_WIDTH // 10 * 6, GAME_HEIGHT - 80)
+slider_label_position_velocity = (slider_position_velocity[0] + slider_width // 2 - fontsize*1.5, slider_position_velocity[1] + slider_height)
+slider_value_position_velocity = (slider_position_velocity[0] + slider_width + 15, slider_position_velocity[1] - fontsize // 2)
+
+# -------------   Slider Labels ------------- #
+slider_label_angle = "Angle"
+slider_label_distance = "Distance"
+slider_label_velocity = "Velocity"
 
 
 
