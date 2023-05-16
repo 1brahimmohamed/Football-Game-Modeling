@@ -12,9 +12,6 @@ screen_height = screen_info.current_h
 GAME_HEIGHT = int(screen_height*0.7)
 GAME_WIDTH = GAME_HEIGHT * 1.85
 
-print(GAME_WIDTH)
-print(GAME_HEIGHT)
-
 # -------------  Game FPS ------------- #
 GAME_FPS = 60
 
